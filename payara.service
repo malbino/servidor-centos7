@@ -8,6 +8,7 @@ ExecStart = /usr/bin/java -jar /opt/payara41/glassfish/lib/client/appserver-cli.
 ExecStop = /usr/bin/java -jar /opt/payara41/glassfish/lib/client/appserver-cli.jar stop-domain
 ExecReload = /usr/bin/java -jar /opt/payara41/glassfish/lib/client/appserver-cli.jar restart-domain
 Type = forking
+TimeoutSec=900
 
 [Install]
 WantedBy = multi-user.target
