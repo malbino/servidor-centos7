@@ -1,0 +1,2 @@
+LogSyslog yes
+DatabaseMirror database.clamav.net

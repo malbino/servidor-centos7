@@ -1,0 +1,1 @@
+POSTGREY_OPTS="--delay=60 --whitelist-clients=/etc/postfix/postgrey_whitelist_clients"
