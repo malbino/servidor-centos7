@@ -7,7 +7,7 @@ echo "Orion en Centos 7"
 echo "Actualizando MariaDB ..."
 systemctl stop mariadb
 cd /etc/yum.repos.d
-wget https://proyectoorion.com/downloads/MariaDB.repo
+wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/MariaDB.repo
 yum update
 systemctl enable mariadb
 systemctl start mariadb
@@ -24,7 +24,7 @@ cd /opt/payara41/glassfish/lib/
 wget https://downloads.mariadb.com/Connectors/java/connector-java-2.7.1/mariadb-java-client-2.7.1.jar
 cd /opt/payara41/glassfish/domains/domain1/config
 mv domain.xml domain.xml.bak
-wget https://proyectoorion.com/downloads/domain.xml
+wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/domain.xml
 adduser payara
 chown -R payara:payara /opt/payara41
 
@@ -38,7 +38,7 @@ su payara -c "/opt/payara41/glassfish/bin/asadmin stop-domain domain1"
 # servicio payara
 echo "Instalando el servicio de Payara ..."
 cd /etc/systemd/system/
-wget https://proyectoorion.com/downloads/payara.service
+wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/payara.service
 systemctl enable payara
 systemctl start payara
 
@@ -64,9 +64,9 @@ make install
 echo "Configurando mod_jk de Apache ..."
 # "JkMount /* worker1" IPSConfig/Sites/Options/Apache Directives
 cd /etc/httpd/conf.modules.d/
-wget https://proyectoorion.com/downloads/mod_jk
+wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/mod_jk
 mv mod_jk mod_jk.conf
-wget https://proyectoorion.com/downloads/worker.properties
+wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/worker.properties
 
 echo "Instalacion finalizada ..."
 echo "Nota: En IPSConfig/Sites/Options/Apache Directives añada la siguiente linea"

@@ -51,20 +51,20 @@ systemctl restart clamd@amavis dovecot mariadb.service postfix.service httpd.ser
 echo "················ mysql_secure_installation ··············"
 mysql_secure_installation
 
-wget -O /etc/httpd/conf.d/phpMyAdmin.conf https://proyectoorion.com/downloads/ispconfig7/phpMyAdmin
-wget -O /etc/httpd/conf.d/ssl.conf https://proyectoorion.com/downloads/ispconfig7/ssl
-wget -O /etc/phpMyAdmin/config.inc.php https://proyectoorion.com/downloads/ispconfig7/config.myadmin
-wget -O /etc/freshclam.conf https://proyectoorion.com/downloads/ispconfig7/freshclam
-wget -O /etc/php.ini https://proyectoorion.com/downloads/ispconfig7/php.txt
+wget -O /etc/httpd/conf.d/phpMyAdmin.conf https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/phpMyAdmin
+wget -O /etc/httpd/conf.d/ssl.conf https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/ssl
+wget -O /etc/phpMyAdmin/config.inc.php https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/config.myadmin
+wget -O /etc/freshclam.conf https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/freshclam
+wget -O /etc/php.ini https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/php.txt
 
 sa-update
 freshclam
 
 #yum -y install https://anku.ecualinux.com/7/x86_64/mod_suphp-0.7.2-1.el7.centos.x86_64.rpm
 
-#wget -q -O /etc/suphp.conf https://proyectoorion.com/downloads/ispconfig7/suphp
-#wget  -q -O /etc/httpd/conf.d/mod_suphp.conf https://proyectoorion.com/downloads/ispconfig7/mod_suphp
-wget  -q -O /etc/httpd/conf.d/php.conf https://proyectoorion.com/downloads/ispconfig7/php
+#wget -q -O /etc/suphp.conf https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/suphp
+#wget  -q -O /etc/httpd/conf.d/mod_suphp.conf https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/mod_suphp
+wget  -q -O /etc/httpd/conf.d/php.conf https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/php
 
 #chmod +s /usr/sbin/suphp
 
@@ -77,24 +77,24 @@ openssl req -x509 -nodes -days 7300 -newkey rsa:2048 -keyout /etc/ssl/private/pu
 chmod 600 /etc/ssl/private/pure-ftpd.pem
 systemctl restart pure-ftpd.service
 
-wget -q -O /etc/named.conf https://proyectoorion.com/downloads/ispconfig7/named
+wget -q -O /etc/named.conf https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/named
 touch /etc/named.conf.local
 #fail2ban
-wget -q -O /etc/fail2ban/jail.d/00-firewalld.conf https://proyectoorion.com/downloads/ispconfig7/00-firewalld
-wget -q -O /etc/fail2ban/jail.d/postfix.local https://proyectoorion.com/downloads/ispconfig7/postfix.local
-wget -q -O /etc/fail2ban/jail.d/sshd.local https://proyectoorion.com/downloads/ispconfig7/sshd.local
+wget -q -O /etc/fail2ban/jail.d/00-firewalld.conf https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/00-firewalld
+wget -q -O /etc/fail2ban/jail.d/postfix.local https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/postfix.local
+wget -q -O /etc/fail2ban/jail.d/sshd.local https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/sshd.local
 
 systemctl enable --now named.service
 systemctl enable --now fail2ban.service
 
 touch /var/lib/mailman/data/aliases
-wget  -q -O /etc/roundcubemail/config.inc.php https://proyectoorion.com/downloads/ispconfig7/config.rc
-wget  -q -O /tmp/rcm.sql https://proyectoorion.com/downloads/ispconfig7/rcm
+wget  -q -O /etc/roundcubemail/config.inc.php https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/config.rc
+wget  -q -O /tmp/rcm.sql https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/rcm
 
 echo "Entre la clave de root de MySQL"
 mysql -u root -p < /tmp/rcm.sql
 
-wget -O /etc/httpd/conf.d/roundcubemail.conf https://proyectoorion.com/downloads/ispconfig7/roundcubemail.conf.local
+wget -O /etc/httpd/conf.d/roundcubemail.conf https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/roundcubemail.conf.local
 
 cat /etc/roundcubemail/config.inc.php|egrep -v enable_installer > /tmp/config.inc.php
 cat /tmp/config.inc.php > /etc/roundcubemail/config.inc.php
@@ -107,7 +107,7 @@ tar xfz ISPConfig-3.2.5.tar.gz
 cd ispconfig3_install/install/
 
 php -q install.php
-wget -O /usr/lib/mailman/Mailman/mm_cfg.py https://proyectoorion.com/downloads/ispconfig7/mm_cfg.py
+wget -O /usr/lib/mailman/Mailman/mm_cfg.py https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/mm_cfg.py
 chown root.mailman /usr/lib/mailman/Mailman/mm_cfg.py
 
 #systemctl restart mailman
@@ -118,13 +118,13 @@ wget https://www.ispconfig.org/downloads/ispconfig_patch
 chmod 700 ispconfig_patch
 chown root:root ispconfig_patch
 ln -s /usr/local/ispconfig/server/scripts/ispconfig_patch /usr/local/bin/ispconfig_patch
-wget -O /etc/postfix/master.cf https://proyectoorion.com/downloads/ispconfig7/master.cf
-wget -O /etc/postfix/main.cf https://proyectoorion.com/downloads/ispconfig7/main.cf
+wget -O /etc/postfix/master.cf https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/master.cf
+wget -O /etc/postfix/main.cf https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/main.cf
 openssl req -new -outform PEM -out /etc/postfix/smtpd.cert -newkey rsa:2048 -nodes -keyout /etc/postfix/smtpd.key -keyform PEM -days 365 -x509 -subj '/CN=localhost.localdomain/O=My Company Name LTD./C=EC'
 
-wget -O /etc/sysconfig/postgrey https://proyectoorion.com/downloads/ispconfig7/postgrey.txt
+wget -O /etc/sysconfig/postgrey https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/postgrey.txt
 wget -O /etc/postfix/postgrey_whitelist_clients https://raw.githubusercontent.com/schweikert/postgrey/master/postgrey_whitelist_clients
-#wget -O /usr/local/ispconfig/server/conf-custom/vhost.conf.master https://proyectoorion.com/downloads/ispconfig7/vhost.conf.master
+#wget -O /usr/local/ispconfig/server/conf-custom/vhost.conf.master https://raw.githubusercontent.com/malbino/servidor-centos7/master/ispconfig7/vhost.conf.master
 #chmod 760 /usr/local/ispconfig/server/conf-custom/vhost.conf.master
 #chown root.root /usr/local/ispconfig/server/conf-custom/vhost.conf.master
 
