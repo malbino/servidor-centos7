@@ -31,20 +31,22 @@ wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/payara.se
 systemctl enable payara
 systemctl start payara
 
-# firewall payara
+# csf firewall
 echo "Configurando el firewall para Payara ..."
-firewall-cmd --zone=public --add-port=4848/tcp --permanent
-firewall-cmd --reload
+sed -i "s|2030,2031,2082,2083,2086,2087,2095,2096|2030,2031,2082,2083,2086,2087,2095,2096,4848|" /etc/csf/csf.conf
+csf -r
 
 # instalacion mod_jk
 echo "Instalando mod_jk de Apache ..."
-yum install gcc gcc-c++ autoconf libtool
+yum install gcc gcc-c++ autoconf libtool httpd-devel
 mkdir -p /opt/mod_jk/
 cd /opt/mod_jk
 wget https://downloads.apache.org/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.48-src.tar.gz
 tar zxf tomcat-connectors-1.2.48-src.tar.gz
 cd tomcat-connectors-1.2.48-src/native
 ./configure --with-apxs=/usr/bin/apxs
+mkdir -p /usr/lib64/apr-1/build
+ln -s /usr/lib64/apr/build-1/libtool /usr/lib64/apr-1/build/libtool
 make
 libtool --finish /usr/lib64/httpd/modules
 make install
