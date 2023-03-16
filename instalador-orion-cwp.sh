@@ -1,7 +1,18 @@
 #!/bin/bash
 
 clear
-echo "Payara en Centos 7"
+echo "Orion en Centos 7"
+
+# actualizando MariaDB
+echo "Actualizando MariaDB ..."
+systemctl stop mariadb
+cd /etc/yum.repos.d
+wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/MariaDB.repo -O mariadb.repo
+yum update
+systemctl enable mariadb
+systemctl start mariadb
+echo "Ingrese la contraseña del usuario root de mariadb"
+mysql_upgrade -u root -p
 
 # instalando payara
 echo "Instalando Payara 4.1.2.181 ..."
@@ -61,5 +72,5 @@ wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/worker.pr
 
 echo "Instalacion finalizada ..."
 echo "Nota: En CWP7.admin/WebServer Settings/WebServers Conf Editor/</usr/local/apache/conf.d/vhosts>"
-echo "en el <Conf File> <dominio.ssl.conf> añada la siguiente linea dentro la seccion <VirtualHost ip:443>"
+echo "en el <Conf File> <dominio.ssl.conf> agrege la siguiente linea dentro la seccion <VirtualHost ip:443>"
 echo "JkMount /* worker1"
