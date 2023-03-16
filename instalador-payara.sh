@@ -54,7 +54,7 @@ make install
 # configuracion mod_jk
 echo "Configurando mod_jk de Apache ..."
 # "JkMount /* worker1" IPSConfig/Sites/Options/Apache Directives
-cd /etc/httpd/conf.modules.d/
+cd /usr/local/apache/conf.d/
 wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/mod_jk
 mv mod_jk mod_jk.conf
 wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/worker.properties
