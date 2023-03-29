@@ -3,17 +3,6 @@
 clear
 echo "Orion en Centos 7"
 
-# actualizando MariaDB
-echo "Actualizando MariaDB ..."
-systemctl stop mariadb
-cd /etc/yum.repos.d
-wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/MariaDB.repo -O mariadb.repo
-yum update
-systemctl enable mariadb
-systemctl start mariadb
-echo "Ingrese la contraseña del usuario root de mariadb"
-mysql_upgrade -u root -p
-
 # instalando payara
 echo "Instalando Payara 4.1.2.181 ..."
 yum install java-1.8.0-openjdk-devel
