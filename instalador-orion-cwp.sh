@@ -57,7 +57,8 @@ wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/worker.pr
 cd /usr/lib/systemd/system
 mv httpd.service httpd.service.bak
 wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/httpd.service
-systemctl enable --now httpd.service
+systemctl enable httpd.service
+systemctl restart httpd.service
 
 echo "Instalacion finalizada ..."
 echo "Nota: En CWP7.admin/WebServer Settings/WebServers Conf Editor/</usr/local/apache/conf.d/vhosts>"
