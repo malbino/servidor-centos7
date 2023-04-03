@@ -1,4 +1,4 @@
-LoadModule jk_module /usr/lib64/httpd/modules/mod_jk.so
+LoadModule jk_module /usr/local/apache/modules/mod_jk.so
 JkWorkersFile /usr/local/apache/conf.d/worker.properties
 JkShmFile     /var/run/mod_jk
 # Where to put jk logs

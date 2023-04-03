@@ -38,18 +38,14 @@ csf -r
 
 # instalacion mod_jk
 echo "Instalando mod_jk de Apache ..."
-yum install gcc gcc-c++ autoconf libtool httpd-devel
-mkdir -p /opt/mod_jk/
-cd /opt/mod_jk
+yum install httpd-devel gcc libtool
+cd /opt
 wget https://downloads.apache.org/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.48-src.tar.gz
 tar zxf tomcat-connectors-1.2.48-src.tar.gz
 cd tomcat-connectors-1.2.48-src/native
-./configure --with-apxs=/usr/bin/apxs
-mkdir -p /usr/lib64/apr-1/build
-ln -s /usr/lib64/apr/build-1/libtool /usr/lib64/apr-1/build/libtool
+LDFLAGS=-lc ./configure -with-apxs=/usr/local/apache/bin/apxs
 make
-libtool --finish /usr/lib64/httpd/modules
-make install
+cp ./apache-2.0/mod_jk.so /usr/local/apache/modules
 
 # configuracion mod_jk
 echo "Configurando mod_jk de Apache ..."
