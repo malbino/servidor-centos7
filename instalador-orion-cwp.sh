@@ -54,6 +54,7 @@ cd /usr/local/apache/conf.d/
 wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/mod_jk_cwp
 mv mod_jk_cwp mod_jk.conf
 wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/worker.properties
+systemctl enable --now httpd.service
 
 echo "Instalacion finalizada ..."
 echo "Nota: En CWP7.admin/WebServer Settings/WebServers Conf Editor/</usr/local/apache/conf.d/vhosts>"
