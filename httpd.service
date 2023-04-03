@@ -1,0 +1,13 @@
+[Unit]
+Description=Web server Apache
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/apache/bin/apachectl start
+ExecReload=/usr/local/apache/bin/apachectl graceful
+ExecStop=/usr/local/apache/bin/apachectl graceful-stop
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

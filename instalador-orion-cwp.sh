@@ -54,6 +54,9 @@ cd /usr/local/apache/conf.d/
 wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/mod_jk_cwp
 mv mod_jk_cwp mod_jk.conf
 wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/worker.properties
+cd /usr/lib/systemd/system
+mv httpd.service httpd.service.bak
+wget https://raw.githubusercontent.com/malbino/servidor-centos7/master/httpd.service
 systemctl enable --now httpd.service
 
 echo "Instalacion finalizada ..."
