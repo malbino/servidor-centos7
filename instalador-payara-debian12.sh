@@ -3,6 +3,11 @@
 clear
 echo "Payara en Debian 12"
 
+# instalando utilitarios
+echo "Instalando utiilitarios..."
+apt update
+apt install wget unzip
+
 # instalando java
 echo "Instalando Java ..."
 wget http://www.mirbsd.org/~tg/Debs/sources.txt/wtf-bookworm.sources
